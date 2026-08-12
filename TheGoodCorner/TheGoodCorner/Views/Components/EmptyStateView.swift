@@ -10,7 +10,7 @@ struct EmptyStateView: View {
                 .foregroundStyle(.secondary)
                 .accessibilityHidden(true)
 
-            Text("No listings found")
+            Text(L10n.emptyTitle)
                 .font(.emptyStateTitle)
 
             Text(message)
@@ -25,5 +25,5 @@ struct EmptyStateView: View {
 }
 
 #Preview {
-    EmptyStateView(message: "Try selecting a different category.")
+    EmptyStateView(message: L10n.emptyPreviewMessage)
 }

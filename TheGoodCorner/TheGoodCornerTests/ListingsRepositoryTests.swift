@@ -3,20 +3,15 @@ import XCTest
 
 @MainActor
 final class ListingsRepositoryTests: XCTestCase {
-    func testFetchListingsForwardsExpectedRequest() async throws {
+    func testFetchListingsUsesBaseListingsEndpointWithoutQueryItems() async throws {
         let client = MockAPIClient()
         client.listingsResponse = makeListingsResponse()
         let repository = ListingsRepository(client: client)
 
-        let response = try await repository.fetchListings(page: 2, limit: 50, query: "bike")
+        _ = try await repository.fetchListings()
 
-        XCTAssertEqual(response.total, 2)
         XCTAssertEqual(client.lastPath, "/listings")
-        XCTAssertEqual(client.lastQueryItems, [
-            URLQueryItem(name: "page", value: "2"),
-            URLQueryItem(name: "limit", value: "50"),
-            URLQueryItem(name: "query", value: "bike")
-        ])
+        XCTAssertEqual(client.lastQueryItems, [])
     }
 
     func testFetchCategoriesUsesCategoriesEndpoint() async throws {

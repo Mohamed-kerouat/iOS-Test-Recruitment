@@ -3,7 +3,7 @@ import SwiftUI
 // MARK: - Environment Key
 
 private struct APIBaseURLKey: EnvironmentKey {
-    static let defaultValue = URL(string: "http://localhost:8080")!
+    static let defaultValue = AppConfig.apiBaseURL
 }
 
 extension EnvironmentValues {

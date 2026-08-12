@@ -1,6 +1,5 @@
 import Foundation
 
-@MainActor
 final class APIClient: APIClientProtocol {
     private let baseURL: URL
     private let session: URLSession

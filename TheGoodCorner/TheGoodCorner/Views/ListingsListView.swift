@@ -19,8 +19,8 @@ struct ListingsListView: View {
 
                 case .empty:
                     EmptyStateView(message: viewModel.selectedCategoryID == nil
-                        ? "No listings available right now."
-                        : "No listings found in this category.")
+                        ? L10n.emptyAllListingsMessage
+                        : L10n.emptyFilteredListingsMessage)
 
                 case .error(let message):
                     ErrorView(message: message) {
@@ -28,7 +28,7 @@ struct ListingsListView: View {
                     }
                 }
             }
-            .navigationTitle("Listings")
+            .navigationTitle(L10n.listingsNavigationTitle)
             .safeAreaInset(edge: .top) {
                 if !viewModel.categories.isEmpty {
                     categoryFilterBar
@@ -52,9 +52,7 @@ struct ListingsListView: View {
         }
         .listStyle(.plain)
         .navigationDestination(for: Listing.self) { listing in
-            // Placeholder until Day 4 detail screen implementation
-            Text(listing.title)
-                .navigationTitle("Detail")
+            ListingDetailView(listing: listing, categories: viewModel.categories)
         }
     }
 
@@ -63,7 +61,7 @@ struct ListingsListView: View {
     private var categoryFilterBar: some View {
         ScrollView(.horizontal, showsIndicators: false) {
             HStack(spacing: Spacing.xSmall) {
-                filterChip(label: "All", id: nil)
+                filterChip(label: L10n.allCategoriesFilterTitle, id: nil)
 
                 ForEach(viewModel.categories) { category in
                     filterChip(label: category.name, id: category.id)
@@ -74,7 +72,7 @@ struct ListingsListView: View {
         }
         .background(.regularMaterial)
         .accessibilityElement(children: .contain)
-        .accessibilityLabel("Category filter")
+        .accessibilityLabel(L10n.categoryFilterLabel)
     }
 
     private func filterChip(label: String, id: Int?) -> some View {
@@ -91,8 +89,8 @@ struct ListingsListView: View {
                 .foregroundStyle(isSelected ? Color.white : Color.primary)
                 .clipShape(Capsule())
         }
-        .accessibilityLabel(isSelected ? "\(label), selected" : "\(label)")
+        .accessibilityLabel(isSelected ? L10n.selectedFilterAccessibility(label) : label)
         .accessibilityAddTraits(isSelected ? [.isSelected] : [])
-        .accessibilityHint("Filter listings by \(label)")
+        .accessibilityHint(L10n.categoryFilterHint(label))
     }
 }

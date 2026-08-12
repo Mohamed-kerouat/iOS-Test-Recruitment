@@ -29,7 +29,7 @@ struct ListingRowView: View {
                     .lineLimit(2)
                     .fixedSize(horizontal: false, vertical: true)
 
-                Text(formattedPrice)
+                Text(listing.formattedPrice)
                     .font(.listingPrice)
                     .foregroundStyle(Color.priceText)
             }
@@ -47,27 +47,23 @@ struct ListingRowView: View {
         HStack(spacing: Spacing.xxSmall) {
             Image(systemName: "bolt.fill")
                 .font(.caption2)
-            Text("Urgent")
+            Text(L10n.urgentBadge)
                 .font(.caption2.weight(.semibold))
         }
-            .foregroundStyle(Color.urgentAccent)
+        .foregroundStyle(Color.urgentAccent)
         // Not hidden: the badge text "Urgent" is meaningful for accessibility
-        .accessibilityLabel("Urgent listing")
+        .accessibilityLabel(L10n.urgentListingAccessibility)
     }
 
     // MARK: - Helpers
 
     private var categoryName: String {
-        categories.first { $0.id == listing.categoryID }?.name ?? "Unknown"
-    }
-
-    private var formattedPrice: String {
-        "\(listing.price.formatted(.number)) €"
+        categories.first { $0.id == listing.categoryID }?.name ?? L10n.unknownCategory
     }
 
     private var accessibilityDescription: String {
-        var parts = [listing.title, formattedPrice, categoryName]
-        if listing.isUrgent { parts.append("Urgent") }
+        var parts = [listing.title, listing.formattedPrice, categoryName]
+        if listing.isUrgent { parts.append(L10n.urgentBadge) }
         return parts.joined(separator: ", ")
     }
 }
