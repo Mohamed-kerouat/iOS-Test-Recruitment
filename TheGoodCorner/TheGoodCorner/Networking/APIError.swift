@@ -11,13 +11,13 @@ enum APIError: Error, LocalizedError {
     var errorDescription: String? {
         switch self {
         case .invalidURL:
-            return "The request URL could not be created."
+            return L10n.invalidRequestURLMessage
         case .invalidResponse:
-            return "The server returned an invalid response."
+            return L10n.invalidResponseMessage
         case .emptyData:
-            return "The server returned an empty response."
+            return L10n.emptyResponseMessage
         case .server(let statusCode):
-            return "The server returned an error (status code: \(statusCode))."
+            return L10n.serverError(statusCode: statusCode)
         case .transport(let error):
             return error.localizedDescription
         case .decoding(let error):

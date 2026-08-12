@@ -18,7 +18,7 @@ final class ListingsViewModel: ObservableObject {
         state = .loading
 
         do {
-            async let listingsTask = repository.fetchListings(page: nil, limit: nil, query: nil)
+            async let listingsTask = repository.fetchListings()
             async let categoriesTask = repository.fetchCategories()
 
             let listingsResponse = try await listingsTask
@@ -54,9 +54,9 @@ final class ListingsViewModel: ObservableObject {
 
     private func mapErrorMessage(_ error: Error) -> String {
         if let apiError = error as? APIError {
-            return apiError.errorDescription ?? "Something went wrong. Please try again."
+            return apiError.errorDescription ?? L10n.genericErrorMessage
         }
 
-        return "Something went wrong. Please try again."
+        return L10n.genericErrorMessage
     }
 }

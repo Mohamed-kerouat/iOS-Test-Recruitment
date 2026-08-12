@@ -11,7 +11,7 @@ struct ErrorView: View {
                 .foregroundStyle(.orange)
                 .accessibilityHidden(true)
 
-            Text("Something went wrong")
+            Text(L10n.errorTitle)
                 .font(.errorTitle)
 
             Text(message)
@@ -20,9 +20,9 @@ struct ErrorView: View {
                 .multilineTextAlignment(.center)
                 .padding(.horizontal, Spacing.large)
 
-            Button("Try Again", action: retryAction)
+            Button(L10n.retryButtonTitle, action: retryAction)
                 .buttonStyle(.borderedProminent)
-                .accessibilityLabel("Retry loading listings")
+                .accessibilityLabel(L10n.retryLoadingAccessibility)
         }
         .frame(maxWidth: .infinity, maxHeight: .infinity)
         .padding(Spacing.medium)
@@ -30,5 +30,5 @@ struct ErrorView: View {
 }
 
 #Preview {
-    ErrorView(message: "The server returned an error (status code: 500).") {}
+    ErrorView(message: L10n.serverError(statusCode: 500)) {}
 }

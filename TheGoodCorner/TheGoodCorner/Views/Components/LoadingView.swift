@@ -7,13 +7,13 @@ struct LoadingView: View {
                 .scaleEffect(1.5)
                 .tint(.accentColor)
 
-            Text("Loading listings…")
+            Text(L10n.loadingListingsMessage)
                 .font(.emptyStateSubtitle)
                 .foregroundStyle(.secondary)
         }
         .frame(maxWidth: .infinity, maxHeight: .infinity)
         .accessibilityElement(children: .combine)
-        .accessibilityLabel("Loading listings, please wait")
+        .accessibilityLabel(L10n.loadingListingsAccessibility)
     }
 }
 
