@@ -1,7 +1,7 @@
 import Foundation
 
-struct Listing: Codable, Identifiable {
-    struct ImagesURL: Codable {
+struct Listing: Codable, Identifiable, Hashable {
+    struct ImagesURL: Codable, Hashable {
         let small: String?
         let thumb: String?
     }
