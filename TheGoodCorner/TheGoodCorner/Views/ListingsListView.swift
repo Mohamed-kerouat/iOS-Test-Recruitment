@@ -18,9 +18,9 @@ struct ListingsListView: View {
                     listContent(listings: listings)
 
                 case .empty:
-                    EmptyStateView(message: viewModel.selectedCategoryID == nil
-                        ? L10n.emptyAllListingsMessage
-                        : L10n.emptyFilteredListingsMessage)
+                    EmptyStateView(message: viewModel.isFiltering
+                        ? L10n.emptyFilteredListingsMessage
+                        : L10n.emptyAllListingsMessage)
 
                 case .error(let message):
                     ErrorView(message: message) {
@@ -29,6 +29,11 @@ struct ListingsListView: View {
                 }
             }
             .navigationTitle(L10n.listingsNavigationTitle)
+            .searchable(
+                text: $viewModel.searchText,
+                placement: .navigationBarDrawer(displayMode: .always),
+                prompt: L10n.searchPrompt
+            )
             .safeAreaInset(edge: .top) {
                 if !viewModel.categories.isEmpty {
                     categoryFilterBar

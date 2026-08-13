@@ -41,12 +41,16 @@ enum L10n {
         String(localized: "listings.empty.preview.message", defaultValue: "Try selecting a different category.")
     }
 
+    static var allCategoriesFilterTitle: String {
+        String(localized: "listings.filter.all", defaultValue: "All")
+    }
+
     static var categoryFilterLabel: String {
         String(localized: "listings.filter.bar.label", defaultValue: "Category filter")
     }
 
-    static var allCategoriesFilterTitle: String {
-        String(localized: "listings.filter.all", defaultValue: "All")
+    static var searchPrompt: String {
+        String(localized: "listings.search.prompt", defaultValue: "Search listings")
     }
 
     static func selectedFilterAccessibility(_ label: String) -> String {

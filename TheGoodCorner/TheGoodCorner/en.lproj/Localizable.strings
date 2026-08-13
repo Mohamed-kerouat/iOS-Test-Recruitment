@@ -10,6 +10,7 @@
 "listings.empty.preview.message" = "Try selecting a different category.";
 "listings.filter.bar.label" = "Category filter";
 "listings.filter.all" = "All";
+"listings.search.prompt" = "Search listings";
 "listings.filter.selected" = "%@, selected";
 "listings.filter.hint" = "Filter listings by %@";
 "listing.urgent.badge" = "Urgent";
