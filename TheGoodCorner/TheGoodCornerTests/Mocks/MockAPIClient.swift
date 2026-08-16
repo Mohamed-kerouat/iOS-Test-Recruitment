@@ -1,4 +1,5 @@
 import Foundation
+import XCTest
 @testable import TheGoodCorner
 
 @MainActor
@@ -26,6 +27,7 @@ final class MockAPIClient: APIClientProtocol {
             return categoriesResponse as! T
         }
 
-        fatalError("Unexpected request type: \(T.self)")
+        XCTFail("Unexpected request type: \(T.self)")
+        throw APIError.invalidResponse
     }
 }

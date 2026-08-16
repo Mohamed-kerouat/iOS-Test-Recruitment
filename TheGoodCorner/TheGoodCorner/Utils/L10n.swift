@@ -75,10 +75,6 @@ enum L10n {
         String(localized: "listing.category.unknown", defaultValue: "Unknown")
     }
 
-    static var listingDetailNavigationTitle: String {
-        String(localized: "listing.detail.navigation.title", defaultValue: "Detail")
-    }
-
     static func categoryPrefix(_ categoryName: String) -> String {
         let format = String(localized: "listing.detail.category.label", defaultValue: "Category: %@")
         return String(format: format, locale: Locale.current, categoryName)
