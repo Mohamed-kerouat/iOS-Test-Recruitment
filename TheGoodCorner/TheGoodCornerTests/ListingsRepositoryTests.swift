@@ -11,7 +11,7 @@ final class ListingsRepositoryTests: XCTestCase {
         _ = try await repository.fetchListings()
 
         XCTAssertEqual(client.lastPath, "/listings")
-        XCTAssertEqual(client.lastQueryItems, [])
+        XCTAssertNil(client.lastQueryItems)
     }
 
     func testFetchCategoriesUsesCategoriesEndpoint() async throws {
@@ -24,6 +24,17 @@ final class ListingsRepositoryTests: XCTestCase {
         XCTAssertEqual(categories.count, 1)
         XCTAssertEqual(client.lastPath, "/categories")
         XCTAssertNil(client.lastQueryItems)
+    }
+
+    func testSearchListingsUsesListingsEndpointWithQueryItem() async throws {
+        let client = MockAPIClient()
+        client.listingsResponse = makeListingsResponse()
+        let repository = ListingsRepository(client: client)
+
+        _ = try await repository.searchListings(query: "sofa")
+
+        XCTAssertEqual(client.lastPath, "/listings")
+        XCTAssertEqual(client.lastQueryItems, [URLQueryItem(name: "query", value: "sofa")])
     }
 
     private func makeListingsResponse() -> ListingsResponse {

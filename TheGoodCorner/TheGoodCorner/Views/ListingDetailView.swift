@@ -10,7 +10,7 @@ struct ListingDetailView: View {
         ScrollView {
             VStack(alignment: .leading, spacing: Spacing.medium) {
                 ListingImageView(
-                    url: listing.smallImageURL(baseURL: baseURL),
+                    url: listing.thumbImageURL(baseURL: baseURL),
                     size: CGSize(width: ImageSize.detailHero, height: ImageSize.detailHero)
                 )
                 .frame(maxWidth: .infinity)
@@ -51,7 +51,7 @@ struct ListingDetailView: View {
             }
             .padding(Spacing.medium)
         }
-        .navigationTitle(L10n.listingDetailNavigationTitle)
+        .navigationTitle(listing.title)
         .navigationBarTitleDisplayMode(.inline)
     }
 

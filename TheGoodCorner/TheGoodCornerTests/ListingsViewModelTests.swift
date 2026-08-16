@@ -30,7 +30,6 @@ final class ListingsViewModelTests: XCTestCase {
         )
 
         let viewModel = ListingsViewModel(repository: repository)
-
         await viewModel.load()
 
         guard case .empty = viewModel.state else {
@@ -43,7 +42,6 @@ final class ListingsViewModelTests: XCTestCase {
         repository.listingsResult = .failure(APIError.server(statusCode: 500))
 
         let viewModel = ListingsViewModel(repository: repository)
-
         await viewModel.load()
 
         guard case let .error(message) = viewModel.state else {
@@ -240,7 +238,6 @@ final class ListingsViewModelTests: XCTestCase {
             return XCTFail("Expected the full feed to be restored")
         }
         XCTAssertEqual(items.map(\.id), [1, 2])
-        // Clearing the query must not hit the network again.
         XCTAssertEqual(repository.fetchListingsCallCount, 1)
         XCTAssertEqual(repository.searchListingsCallCount, 1)
     }
@@ -257,7 +254,6 @@ final class ListingsViewModelTests: XCTestCase {
         let viewModel = ListingsViewModel(repository: repository, searchDebounce: .milliseconds(20))
         await viewModel.load()
 
-        // Simulate fast keystrokes: each supersedes and cancels the previous pending request.
         viewModel.searchText = "i"
         viewModel.searchText = "ip"
         viewModel.searchText = "iph"
@@ -323,9 +319,10 @@ final class ListingsViewModelTests: XCTestCase {
 
         XCTAssertEqual(items.map(\.id), [1, 2])
         XCTAssertFalse(viewModel.isFiltering)
-        // Whitespace-only queries must not reach the network.
         XCTAssertEqual(repository.searchListingsCallCount, 0)
     }
+
+    // MARK: - Helpers
 
     private func makeListing(id: Int, categoryID: Int, title: String? = nil, description: String = "description") -> Listing {
         Listing(
@@ -341,10 +338,7 @@ final class ListingsViewModelTests: XCTestCase {
     }
 
     private func isLoading(_ state: ViewState<[Listing]>) -> Bool {
-        if case .loading = state {
-            return true
-        }
-
+        if case .loading = state { return true }
         return false
     }
 }

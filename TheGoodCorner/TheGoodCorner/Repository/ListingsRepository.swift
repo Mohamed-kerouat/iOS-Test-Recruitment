@@ -11,7 +11,7 @@ final class ListingsRepository: ListingsRepositoryProtocol {
         try await client.get(
             ListingsResponse.self,
             from: "/listings",
-            queryItems: []
+            queryItems: nil
         )
     }
 

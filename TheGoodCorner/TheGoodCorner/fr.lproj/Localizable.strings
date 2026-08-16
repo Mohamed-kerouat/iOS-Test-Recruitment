@@ -10,12 +10,12 @@
 "listings.empty.preview.message" = "Essayez de selectionner une autre categorie.";
 "listings.filter.bar.label" = "Filtre de categorie";
 "listings.filter.all" = "Toutes";
+"listings.search.prompt" = "Rechercher des annonces";
 "listings.filter.selected" = "%@, selectionne";
 "listings.filter.hint" = "Filtrer les annonces par %@";
 "listing.urgent.badge" = "Urgent";
 "listing.urgent.accessibility" = "Annonce urgente";
 "listing.category.unknown" = "Inconnue";
-"listing.detail.navigation.title" = "Detail";
 "listing.detail.category.label" = "Categorie : %@";
 "listing.detail.publishedOn.label" = "Publiee le %@";
 "listing.detail.description.section" = "Description";

@@ -16,7 +16,6 @@
 "listing.urgent.badge" = "Urgent";
 "listing.urgent.accessibility" = "Urgent listing";
 "listing.category.unknown" = "Unknown";
-"listing.detail.navigation.title" = "Detail";
 "listing.detail.category.label" = "Category: %@";
 "listing.detail.publishedOn.label" = "Published on %@";
 "listing.detail.description.section" = "Description";

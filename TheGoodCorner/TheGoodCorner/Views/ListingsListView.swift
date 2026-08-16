@@ -29,6 +29,7 @@ struct ListingsListView: View {
                 }
             }
             .navigationTitle(L10n.listingsNavigationTitle)
+            .navigationBarTitleDisplayMode(.inline)
             .searchable(
                 text: $viewModel.searchText,
                 placement: .navigationBarDrawer(displayMode: .always),
@@ -53,7 +54,6 @@ struct ListingsListView: View {
             NavigationLink(value: listing) {
                 ListingRowView(listing: listing, categories: viewModel.categories)
             }
-            .accessibilityLabel(listing.title)
         }
         .listStyle(.plain)
         .navigationDestination(for: Listing.self) { listing in
@@ -90,6 +90,7 @@ struct ListingsListView: View {
                 .font(.caption.weight(isSelected ? .semibold : .regular))
                 .padding(.horizontal, Spacing.small)
                 .padding(.vertical, Spacing.xxSmall)
+                .frame(minHeight: 44)
                 .background(isSelected ? Color.accentColor : Color(.tertiarySystemBackground))
                 .foregroundStyle(isSelected ? Color.white : Color.primary)
                 .clipShape(Capsule())
